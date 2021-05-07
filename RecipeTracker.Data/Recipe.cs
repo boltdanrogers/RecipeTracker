@@ -8,5 +8,9 @@ namespace RecipeTracker.Data
 {
     public class Recipe
     {
-    }
+
+
+
+
+    }//end of class recipe
 }

@@ -1,4 +1,7 @@
-﻿using System.Security.Claims;
+﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -24,10 +27,59 @@ namespace RecipeTracker.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
-        }
-    }
+        }//end of create method
+
+        public DbSet<Recipe> Recipes { get; set; }
+        //anything that is a class in the data layer that is supposed to have a table, needs this... be sure the data class is public
+        //here is one for recipes
+        
+        //and here is one for Ingredients
+        public DbSet<Ingredient> Ingredients { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Conventions
+                .Remove<PluralizingTableNameConvention>();
+            modelBuilder
+                .Configurations
+                .Add(new IdentityUserLoginConfiguration())
+                .Add(new IdentityUserRoleConfiguration());
+
+
+        }//end of method OnModelCreating
+
+
+
+    }//end of ApplicationDbContext
+
+    public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    {
+        public IdentityUserLoginConfiguration()
+        {
+            HasKey(iul => iul.UserId);
+
+        }//end of constructor
+
+    }//end of class IdentityUserLoginConfiguration
+
+    //and again for another similar class
+
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
+        {
+            HasKey(iur => iur.UserId);
+        }//end of constructor
+
+
+    }//end of class IdentityUserRoleConfiguration
+
+
+
 }
