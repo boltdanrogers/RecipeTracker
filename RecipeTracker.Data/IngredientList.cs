@@ -10,14 +10,16 @@ namespace RecipeTracker.Data
 {
     public class IngredientList
     {
-        [Key]
-        public int IngredientListId { get; set; }
+ 
+        [ForeignKey(nameof(Recipe))]//Set up to link to a perticular Recipe(1 to 1) 
+        public int IngredientListId { get; set; }//Same as IList in Recipe Class
+        public virtual Recipe Recipe { get; set; }
+        public virtual ICollection<Ingredient> ListOfIngredients { get; set; } //Many to Many relationship with ingredient
 
-        [ForeignKey (nameof(Ingredient))]
-        public string IngredientId { get; set; }
-        public virtual Ingredient Ingredient { get; set; }
-
-
+        public IngredientList()
+        {
+            ListOfIngredients = new HashSet<Ingredient>();
+        }
 
     }//end of class ingredientList
 }

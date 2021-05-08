@@ -39,7 +39,7 @@ namespace RecipeTracker.Data
         
         //and here is one for Ingredients
         public DbSet<Ingredient> Ingredients { get; set; }
-
+        public DbSet<IngredientList> IngredientLists { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
