@@ -23,5 +23,5 @@ Plan some stretch goals - what are some extra things you would like to get done 
 Begin work on the app
 
 ## Google Doc Link
-In this Link we shared all our user stories, acceptance criteria, tasks, points, and sprints. We then communicated to divide tasks evenly for each person to work on using the Fibonacci rule.
+In this Link we shared all our user stories, acceptance criteria, tasks, points, and sprints. We then communicated to divide tasks evenly for each person to work on using the Fibonacci rule as a point system.
 https://docs.google.com/document/d/12uL3j1JJONRKedbMqEkeHqVuIJM5t8sidjHoHK1ILwE/edit?usp=sharing
